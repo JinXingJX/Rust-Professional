@@ -50,7 +50,10 @@ where
 
     // Insert a value into the BST
     fn insert(&mut self, value: T) {
-        //TODO
+        //1. create a new node
+        let new_node = TreeNode::new(value);
+        //2. insert the node into the tree
+        self.insert(new_node);
     }
 
     // Search for a value in the BST

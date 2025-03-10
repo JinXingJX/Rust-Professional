@@ -73,8 +73,25 @@ impl<T> LinkedList<T> {
         }
     }
 	pub fn reverse(&mut self){
-		// TODO
-	}
+        //1. get current node pointer 
+        let mut current = self.start;
+        //2. get previous node pointer
+        let mut prev = None;
+        //3. iterate through the list
+        while let Some(node) = current {
+            //4. get next node pointer
+            let next = unsafe { (*node.as_ptr()).next };
+            //5. set current node next pointer to previous node
+            unsafe { (*node.as_ptr()).next = prev };
+            //6. set previous node to current node
+            prev = Some(node);
+            //7. set current node to next node
+            current = next;
+        }
+        //8. set start to previous node
+        self.start = prev;
+    }
+
 }
 
 impl<T> Display for LinkedList<T>

@@ -5,9 +5,23 @@
 */
 
 
-fn sort<T>(array: &mut [T]){
-	//TODO
+fn sort<T>(array: &mut [T])
+where
+    T: Ord,
+{
+    //1. iterate through the array
+
+    for i in 0..array.len() {
+        //2. iterate through the array again
+        for j in 0..array.len() - 1 - i { //3. compare the elements
+            if array[j] > array[j + 1] {
+                //4. swap the elements
+                array.swap(j, j + 1);
+            }
+        }
+    }
 }
+
 #[cfg(test)]
 mod tests {
     use super::*;
